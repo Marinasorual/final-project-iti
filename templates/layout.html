@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bs5/css/bootstrap.css' %}">
+    <title>Blogger</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg " style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="#" class="nav-link active">{{request.user.username}}</a>
+                        </li>
+                        <li>
+                            <a href="/post/create" class="nav-link active">New Post</a>
+                        </li>
+                        <li>
+                            <a href="/logout" class="nav-link active">Logout</a>
+                        </li>
+                        {% else %}
+                        <li><a href="/login" class="nav-link active">Login</a></li>
+                        <li><a href="/register" class="nav-link active">Register</a></li>
+
+                        {% endif %} {% if user.is_superuser %}
+                        <li><a href="/manage/blogger" class="nav-link active">Manage Blog</a></li>
+
+                        {% endif %}
+                    </ul>
+                    <form class="d-flex" role="search" action="/search" method="GET">
+                        {% csrf_token %}
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>
+                        <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}" role="alert">
+                            <h4 class="alert-heading"></h4>
+                            <p>{{message}}</p>
+
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            {% block content %} {% endblock content %}
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-3">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="/manage/blogger">Panel</a>
+                </li>
+                <li class="list-group-item">
+                    <div class="row justify-content-between">
+                        <div class="col-6">
+                            <a href="/manage/users">Users</a>
+                        </div>
+                        <div class="col-2">
+                            <a href="/manage/user/add" class="btn btn-primary btn-sm float-right">Add</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row justify-content-between">
+                        <div class="col-6">
+                            <a href="/manage/categories">Categroies</a>
+                        </div>
+                        <div class="col-2">
+                            <a href="/manage/category/add/form" class="btn btn-primary btn-sm float-right">Add</a>
+                        </div>
+                    </div>
+
+                </li>
+                <li class="list-group-item">
+                    <div class="row justify-content-between">
+                        <div class="col-6">
+                            <a href="/manage/posts">Posts</a>
+                        </div>
+                        <div class="col-2">
+                            <a href="/manage/post/add/form" class="btn btn-primary btn-sm float-right">Add</a>
+                        </div>
+                    </div>
+
+                </li>
+                <li class="list-group-item">
+                    <div class="row justify-content-between">
+                        <div class="col-6">
+                            <a href="/manage/words">Forbiden Words</a>
+                        </div>
+                        <div class="col-2">
+                            <a href="/manage/word/add/form" class="btn btn-primary btn-sm float-right">Add</a>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+        <div class="col-9">
+            {% block admin_content %} {% endblock admin_content %}
+            <!-- <div class="row">
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>{{users}}</h4>
+                            <h5>Users</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>{{categories}}</h4>
+                            <h5>Categroies</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>{{posts}}</h4>
+                            <h5>Posts</h5>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+{% endblock content %}

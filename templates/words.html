@@ -1,0 +1,27 @@
+{% extends "adminpanel.html" %} {% block admin_content %}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+
+            <table class="table table-sm">
+                <th>Word</th>
+                <th>Create at</th>
+                <th>Action</th>
+                {% for word in words %}
+                <tr>
+                    <td>{{word.word}}</td>
+                    <td>{{word.created_at}}</td>
+                    <td>
+                        <a href="/manage/word/edit/form/{{word.id}}" class="btn  btn-sm btn-primary">Edit</a>
+                        <a href="/manage/word/delete/{{word.id}}" class="btn  btn-sm btn-danger">Delete</a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock admin_content %}

@@ -1,0 +1,84 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="container mt-4">
+
+
+
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="row">
+                                <img src="/media/{{post.image}}" class="card-img-top" alt="...">
+                            </div>
+                            <div class="row">
+                                <div class="col-6 border-end">
+                                    <small>category: {{post.category.name}}</small>
+                                </div>
+                                <div class="col-6">
+                                    <small>Publish in: {{post.created_at}}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="row">
+                                <h5 class="text-center">{{post.title}}</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 border-end">
+                                    <p class="text-center">{{post.likes}}</p>
+                                    <div class="text-center">
+                                        <a href="/post/like/{{post.id}}" class="btn btn-primary btn-sm text-center">Like</a>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <p class="text-center">{{post.dislikes}}</p>
+                                    <div class="text-center">
+                                        <a href="/post/dislike/{{post.id}}" class="btn btn-danger btn-sm">Dislike</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <form action="/post/comment/store/" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="post_id" value="{{post.id}}">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <label for="">Comment</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control form-control-sm" name="comment">
+                                        </div>
+                                        <div class="col-3">
+                                            <button type="submit" class="btn btn-primary btn-sm">save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row mt-2">
+                                <ul class="list-group">
+                                    {% for comment in post.commentpost.all %}
+                                    <li class="list-group-item ">
+                                        <p class="text-primary ">{{comment.user.username}} : <span class="text-dark ">{{comment.content}}</span></p>
+                                        <small class="text-sm">{{comment.created_at}}</small>
+
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock content %}

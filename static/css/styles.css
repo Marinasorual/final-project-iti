@@ -1,0 +1,9 @@
+body {
+    background: url("/static/imgs/main-bg.jpeg");
+    color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    color: darkblue;
+}

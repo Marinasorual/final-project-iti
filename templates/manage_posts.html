@@ -1,0 +1,30 @@
+{% extends "adminpanel.html" %} {% block admin_content %}
+
+<div class="card">
+    <div class="card-body">
+
+        <table class="table table-sm">
+            <th>Title</th>
+            <th>likes</th>
+            <th>Dislikes</th>
+            <th>Create at</th>
+            <th>User</th>
+            <th>Action</th>
+            {% for post in posts %}
+            <tr>
+                <td>{{post.title}}</td>
+                <td>{{post.likes}}</td>
+                <td>{{post.dislikes}}</td>
+                <td>{{post.created_at}}</td>
+                <td>{{post.user.username}}</td>
+                <td>
+                    <a href="/manage/post/edit/form/{{post.id}}" class="btn  btn-sm btn-primary">Edit</a>
+                    <a href="/manage/post/delete/{{post.id}}" class="btn  btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock admin_content %}

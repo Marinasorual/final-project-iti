@@ -1,0 +1,32 @@
+{% extends "adminpanel.html" %} {% block admin_content %}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+
+            <table class="table table-sm">
+                <th>Category</th>
+                <th>Posts</th>
+                <th>Create at</th>
+                <th>Action</th>
+                {% for category in categories %} {% if category.id == request.category.id %}
+                <tr class="bg-info">
+                    {% else %}
+                    <tr>
+                        {% endif %}
+                        <td>{{category.name}}</td>
+                        <td>{{category.posts.count}}</td>
+                        <td>{{category.created_at}}</td>
+                        <td>
+                            <a href="/manage/category/edit/form/{{category.id}}" class="btn  btn-sm btn-primary">Edit</a>
+                            <a href="/manage/category/delete/{{category.id}}" class="btn  btn-sm btn-danger">Delete</a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock admin_content %}
